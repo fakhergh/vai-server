@@ -77,7 +77,7 @@ export class PatientController {
       throw new HttpException(204, 'Patient not exists');
     }
 
-    await this.userService.deleteUser({ _id: deletedPatient._id });
+    await this.userService.deleteUser({ _id: deletedPatient.userId });
 
     return JSON.stringify({ data: deletedPatient, message: 'deleted' });
   }
