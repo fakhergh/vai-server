@@ -1,4 +1,4 @@
-import { IsString, IsNotEmpty, MaxLength, IsEnum } from 'class-validator';
+import { IsString, IsNotEmpty, MaxLength, IsEnum, IsOptional } from 'class-validator';
 import { IsISODate, IsObjectId } from '@utils/validator';
 import { AppointmentStatus } from '@interfaces/appointments.interface';
 
@@ -8,6 +8,7 @@ export class CreateAppointmentDto {
   doctorId: string;
 
   @IsObjectId()
+  @IsOptional()
   patientId: string;
 
   @IsString()
