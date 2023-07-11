@@ -33,7 +33,7 @@ export class DoctorService {
     }
 
     doctor.firstName = doctorData.firstName;
-    doctor.lastName = doctorData.firstName;
+    doctor.lastName = doctorData.lastName;
     doctor.phoneNumber = doctorData.phoneNumber;
     doctor.speciality = doctorData.speciality;
     doctor.address = doctorData.address;
