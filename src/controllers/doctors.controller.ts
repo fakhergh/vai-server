@@ -64,7 +64,7 @@ export class DoctorController {
   @Authorized([UserRole.ADMIN])
   @OpenAPI({ summary: 'Delete a doctor' })
   async deleteDoctor(@Param('id') id: string) {
-    const appointment = await this.appointmentService.findAppointment({ patientId: id });
+    const appointment = await this.appointmentService.findAppointment({ doctorId: id });
 
     if (appointment) {
       throw new HttpException(403, 'Cannot delete patient');
