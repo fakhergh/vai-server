@@ -32,17 +32,7 @@ export class AppointmentService {
   }
 
   async updateAppointment(filter: FilterQuery<Appointment>, appointmentData: UpdateAppointmentData): Promise<Appointment> {
-    const appointment = await AppointmentModel.findOne(filter);
-
-    if (!appointment) {
-      throw new HttpException(404, `Appointment not exists`);
-    }
-
-    appointment.description = appointmentData.description;
-    appointment.date = appointmentData.date;
-    appointment.status = appointmentData.status;
-
-    return appointment.save();
+    return AppointmentModel.findOneAndUpdate(filter, { $set: appointmentData }, { new: true });
   }
 
   async deleteAppointment(filter: FilterQuery<Appointment>): Promise<Appointment> {

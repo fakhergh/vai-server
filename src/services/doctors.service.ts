@@ -23,7 +23,7 @@ export class DoctorService {
   }
 
   async updateDoctor(filter: FilterQuery<Doctor>, doctorData: UpdateDoctorData): Promise<Doctor> {
-    return DoctorModel.findOneAndUpdate(filter, { $set: doctorData });
+    return DoctorModel.findOneAndUpdate(filter, { $set: doctorData }, { new: true });
   }
 
   async deleteDoctor(filter: FilterQuery<Doctor>): Promise<Doctor> {

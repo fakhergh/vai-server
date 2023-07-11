@@ -7,6 +7,7 @@ import { Appointment, CreateAppointmentData } from '@interfaces/appointments.int
 import { CreateAppointmentDto, UpdateAppointmentDto } from '@dtos/appointments.dto';
 import { CurrentUserInfo } from '@interfaces/auth.interface';
 import { FilterQuery } from 'mongoose';
+import { HttpException } from '@exceptions/httpException';
 
 @Controller()
 export class AppointmentController {
@@ -65,6 +66,11 @@ export class AppointmentController {
     }
 
     const updateAppointmentData: Appointment = await this.appointmentService.updateAppointment(filter, appointmentData);
+
+    if (!updateAppointmentData) {
+      throw new HttpException(404, `Appointment not exists`);
+    }
+
     return JSON.stringify({ data: updateAppointmentData, message: 'updated' });
   }
 

@@ -22,7 +22,7 @@ export class PatientService {
   }
 
   async updatePatient(filter: FilterQuery<Patient>, patientData: UpdatePatientData): Promise<Patient> {
-    return PatientModel.findOne(filter, { $set: patientData });
+    return PatientModel.findOne(filter, { $set: patientData }, { new: true });
   }
 
   async deletePatient(filter: FilterQuery<Patient>): Promise<Patient> {
