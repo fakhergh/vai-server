@@ -15,7 +15,7 @@ export class DoctorController {
   public appointmentService = Container.get(AppointmentService);
 
   @Get('/doctors')
-  @Authorized([UserRole.ADMIN])
+  @Authorized([UserRole.ADMIN, UserRole.PATIENT])
   @OpenAPI({ summary: 'Return a list of doctors' })
   async getDoctors() {
     const doctors = await this.doctorService.findDoctors({});

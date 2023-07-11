@@ -18,7 +18,6 @@ export class AppointmentController {
   async getAppointments(@CurrentUser() user: CurrentUserInfo) {
     const filter: FilterQuery<Appointment> = {};
 
-    console.log(user);
     switch (user.user.role) {
       case UserRole.DOCTOR:
         filter.doctorId = user.doctor._id;
