@@ -47,7 +47,7 @@ export class DoctorController {
   @Authorized([UserRole.ADMIN])
   @OpenAPI({ summary: 'Update a doctor' })
   async updateDoctor(@Param('id') id: string, @Body() doctorData: UpdateDoctorDto) {
-    const updatedDoctor = this.doctorService.updateDoctor(
+    const updatedDoctor = await this.doctorService.updateDoctor(
       { _id: id },
       {
         firstName: doctorData.firstName,
@@ -57,6 +57,11 @@ export class DoctorController {
         address: doctorData.address,
       },
     );
+
+    if (!updatedDoctor) {
+      throw new HttpException(204, `Doctor not exists`);
+    }
+
     return JSON.stringify({ data: updatedDoctor, message: 'updated' });
   }
 

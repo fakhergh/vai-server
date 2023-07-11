@@ -2,7 +2,6 @@ import { Service } from 'typedi';
 import { CreateDoctorData, Doctor, UpdateDoctorData } from '@interfaces/doctors.interface';
 import { DoctorModel } from '@models/doctors.model';
 import { FilterQuery } from 'mongoose';
-import { HttpException } from '@exceptions/httpException';
 
 @Service()
 export class DoctorService {
@@ -24,19 +23,7 @@ export class DoctorService {
   }
 
   async updateDoctor(filter: FilterQuery<Doctor>, doctorData: UpdateDoctorData): Promise<Doctor> {
-    const doctor = await DoctorModel.findOne(filter);
-
-    if (!doctor) {
-      throw new HttpException(204, `Doctor not exists`);
-    }
-
-    doctor.firstName = doctorData.firstName;
-    doctor.lastName = doctorData.lastName;
-    doctor.phoneNumber = doctorData.phoneNumber;
-    doctor.speciality = doctorData.speciality;
-    doctor.address = doctorData.address;
-
-    return doctor.save();
+    return DoctorModel.findOneAndUpdate(filter, { $set: doctorData });
   }
 
   async deleteDoctor(filter: FilterQuery<Doctor>): Promise<Doctor> {
