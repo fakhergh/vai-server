@@ -3,8 +3,6 @@ import { CreateDoctorData, Doctor, UpdateDoctorData } from '@interfaces/doctors.
 import { DoctorModel } from '@models/doctors.model';
 import { FilterQuery } from 'mongoose';
 import { HttpException } from '@exceptions/httpException';
-import { AppointmentModel } from '@models/appointments.model';
-import { UserModel } from '@models/users.model';
 
 @Service()
 export class DoctorService {
