@@ -13,7 +13,7 @@ pnpm dev
 Set PORT environment variable = 5000. Then, Open [http://localhost:5000/api-docs](http://localhost:5000/api-docs) with
 your browser to see swagger documentation.
 
-Or [Click here](http://vai-api.eu-central-1.elasticbeanstalk.com/api-docs) to visit the swagger docs online.
+Or [Click here](https://vai-api.fixerloop.com/api-docs) to visit the swagger docs online.
 
 ## Tech-Stack
 
